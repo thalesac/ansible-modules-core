@@ -626,7 +626,17 @@ def get_instance_info(inst):
         instance_info['ebs_optimized'] = getattr(inst, 'ebs_optimized')
     except AttributeError:
         instance_info['ebs_optimized'] = False
+    
+    try:
+        instance_info['vpc_id'] = getattr(inst, 'vpc_id')
+    except AttributeError:
+        instance_info['vpc_id'] = None
 
+    try:
+        instance_info['subnet_id'] = getattr(inst, 'subnet_id')
+    except AttributeError:
+        instance_info['subnet_id'] = None
+    
     try:
         bdm_dict = {}
         bdm = getattr(inst, 'block_device_mapping')
